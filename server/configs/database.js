@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dbName = 'irontrello';
 // connect to the database
-mongoose.connect('mongodb://localhost/${dbName}');
+mongoose.connect(`mongodb://localhost/${dbName}`);
 
 const db = mongoose.connection;
 
