@@ -1,9 +1,8 @@
-'use strict';
+const express = require('express');
+const controller = require('./card.controller');
 
-var express = require('express');
-var controller = require('./card.controller');
 
-var router = express.Router();
+const router = express.Router();
 
 router.post('/', controller.createCard);
 router.put('/:id', controller.editCard);
