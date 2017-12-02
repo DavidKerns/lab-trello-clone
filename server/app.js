@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('./configs/database');
 const mongoose = require('mongoose');
+require('.env');
 // Lesson 1: Require mongoose
 // Lesson 2: Require dotenv configuration
 

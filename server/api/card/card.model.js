@@ -1,12 +1,7 @@
-'use strict';
-
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const cardSchema = new mongoose.Schema({  
+const CardSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true
+    required: true
   },
   description: String,
   dueDate: Date,
@@ -14,7 +9,7 @@ const cardSchema = new mongoose.Schema({
   list: {
     type: Schema.Types.ObjectId,
     ref: 'List',
-    require: true
+    required: true
   }
 }, {
   timestamps: {
@@ -22,5 +17,3 @@ const cardSchema = new mongoose.Schema({
     updatedAt: "updated_at"
   }
 });
-
-module.exports = mongoose.model('Card', cardSchema);  
