@@ -12,14 +12,15 @@ exports.createCard = (req, res, next) => {
     position: req.body.position
   });
 
+	const listId =req.body.list;
+
   newCard.save((err, card) => {
     if(err) {
       console.log(err);
       return res.send(500);
     }
 
-    // Update the corresponding list
-    // Lesson 2: Update the current list
+    listModel.findByIdAndUpdate({_id: listId }, {$push: {cards: cardId}}).exec();
   });
 };
 
