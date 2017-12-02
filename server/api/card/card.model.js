@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const CardSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -17,3 +20,5 @@ const CardSchema = new mongoose.Schema({
     updatedAt: "updated_at"
   }
 });
+
+module.exports = mongoose.model('Card', CardSchema);
