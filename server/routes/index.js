@@ -1,4 +1,4 @@
-const path = require('path');
+var path = require('path');
 
 module.exports = (app) => {
   app.use('/api/list', require('../api/list'));

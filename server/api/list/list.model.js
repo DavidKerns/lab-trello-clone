@@ -16,9 +16,9 @@ const listSchema = new mongoose.Schema({
     default: 0
   },
   cards: {
-  type: Array,
-  "default": [],
-  require: true
+    type: Schema.Types.ObjectId,
+    ref: 'List',
+    required: true
   }
 }, {
   timestamps:{

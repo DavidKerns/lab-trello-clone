@@ -4,7 +4,7 @@ cardModel = require('./card.model');
 listModel = require('../list/list.model');
 
 exports.createCard = (req, res, next) => {
-  const newCard = new CardModel({
+  const newCard = new cardModel({
     title: req.body.title,
     description: req.body.description,
     dueDate: req.body.dueDate,
@@ -15,12 +15,16 @@ exports.createCard = (req, res, next) => {
 	const listId =req.body.list;
 
   newCard.save((err, card) => {
+    console.log("hello");
     if(err) {
       console.log(err);
       return res.send(500);
     }
 
-    listModel.findByIdAndUpdate({_id: listId }, {$push: {cards: cardId}}).exec();
+    listModel.findByIdAndUpdate({ _id: listId}, { $push: { card: card._id}}).exec();
+    res.json({title: card.title,
+      message: "new card created"
+    });
   });
 };
 
@@ -50,8 +54,8 @@ exports.transferCard = function(req, res ,next) {
 			}
 
 			return Promise.all([
-				listModel.findByIdAndUpdate({ _id: sourceList }, { $pull: { cards: cardId }}).exec(),
-				listModel.findByIdAndUpdate({ _id: targetList }, { $push: { cards: cardId }}).exec()
+				listModel.findByIdAndUpdate({ _id: sourceList }, { $pull: { cards: card._Id }}, {new: true}).exec(),
+				listModel.findByIdAndUpdate({ _id: targetList }, { $push: { cards: card._id }}, {new: true}).exec()
 			]).then(
 				(list) => {
 					return res.json({ message: 'card successfully updated', list: list });
